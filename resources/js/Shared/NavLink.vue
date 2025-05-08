@@ -11,7 +11,7 @@ defineProps({
 <template>
     <li>
         <Link
-            class="text-blue-400 hover:underline"
+            class="text-black hover:underline"
             :class="{'font-bold underline text-red-500': active}"
             :href='href'
             >
