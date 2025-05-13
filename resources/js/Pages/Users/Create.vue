@@ -1,8 +1,7 @@
 <script setup>
 
 import Layout from "@/Shared/Layout.vue";
-import {reactive, ref} from "vue";
-import {router, useForm} from "@inertiajs/vue3";
+import { useForm} from "@inertiajs/vue3";
 
 defineProps({
     errors: Object,

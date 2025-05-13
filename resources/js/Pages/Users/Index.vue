@@ -4,6 +4,7 @@ import {Link, router} from "@inertiajs/vue3";
 import { ref, watch } from "vue";
 import Layout from "../../Shared/Layout.vue";
 import Pagination from "../../Shared/Pagination.vue";
+import { debounce } from "lodash";
 
 const props = defineProps({
     users: Object,
@@ -12,9 +13,10 @@ const props = defineProps({
 
 let search = ref(props.filters.search);
 
-watch(search, value => {
+watch(search, debounce(function (value) {
+    console.log('Triggered')
     router.get('/users', { search: value }, { preserveState: true, replace: true });
-});
+}, 500));
 </script>
 
 <template>
