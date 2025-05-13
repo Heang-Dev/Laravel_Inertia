@@ -20,9 +20,17 @@ watch(search, value => {
 <template>
     <Layout>
         <div class="flex w-full justify-between items-center mb-4">
-            <h1 class="text-4xl font-bold text-red-400">
-                Users page
-            </h1>
+            <div class="flex justify-center items-end gap-4">
+                <h1 class="text-4xl font-bold text-red-400">
+                    Users page
+                </h1>
+                <Link
+                    href="/users/create"
+                    class="text-blue-500"
+                >
+                    New User
+                </Link>
+            </div>
 
             <input
                 type="text"

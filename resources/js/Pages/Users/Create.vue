@@ -4,6 +4,10 @@ import Layout from "@/Shared/Layout.vue";
 import { reactive } from "vue";
 import { router} from "@inertiajs/vue3";
 
+defineProps({
+    errors: Object,
+})
+
 let form = reactive({
     name: '',
     email: '',
@@ -35,6 +39,11 @@ let submitFrom = () => {
                     id="name"
                     required
                 >
+                <div
+                    v-if="errors.name"
+                    v-text="errors.name"
+                    class="text-red-500 text-xs mt-1"
+                ></div>
             </div>
             <div class="mb-6">
                 <label
@@ -51,6 +60,11 @@ let submitFrom = () => {
                     id="email"
                     required
                 >
+                <div
+                    v-if="errors.email"
+                    v-text="errors.email"
+                    class="text-red-500 text-xs mt-1"
+                ></div>
             </div>
             <div class="mb-6">
                 <label
@@ -67,6 +81,11 @@ let submitFrom = () => {
                     id="password"
                     required
                 >
+                <div
+                    v-if="errors.password"
+                    v-text="errors.password"
+                    class="text-red-500 text-xs mt-1"
+                ></div>
             </div>
             <div>
                 <button
