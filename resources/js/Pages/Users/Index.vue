@@ -2,8 +2,8 @@
 
 import {Link, router} from "@inertiajs/vue3";
 import { ref, watch } from "vue";
-import Layout from "../Shared/Layout.vue";
-import Pagination from "../Shared/Pagination.vue";
+import Layout from "../../Shared/Layout.vue";
+import Pagination from "../../Shared/Pagination.vue";
 
 const props = defineProps({
     users: Object,
