@@ -1,21 +1,24 @@
 <script setup>
 
 import Layout from "@/Shared/Layout.vue";
-import { reactive } from "vue";
-import { router} from "@inertiajs/vue3";
+import {reactive, ref} from "vue";
+import { router } from "@inertiajs/vue3";
 
 defineProps({
     errors: Object,
 })
+
+let processing = ref(false);
 
 let form = reactive({
     name: '',
     email: '',
     password: '',
 })
-
 let submitFrom = () => {
+    processing.value = true;
     router.post('/users', form);
+
 }
 </script>
 
@@ -90,7 +93,8 @@ let submitFrom = () => {
             <div>
                 <button
                     type="submit"
-                    class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                    :disabled="processing"
+                    class="bg-blue-400 disabled:bg-gray-600 cursor-pointer disabled:cursor-not-allowed text-white rounded py-2 px-4 hover:bg-blue-500"
                 >
                     Submit
                 </button>
