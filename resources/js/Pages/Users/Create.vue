@@ -2,22 +2,19 @@
 
 import Layout from "@/Shared/Layout.vue";
 import {reactive, ref} from "vue";
-import { router } from "@inertiajs/vue3";
+import {router, useForm} from "@inertiajs/vue3";
 
 defineProps({
     errors: Object,
 })
 
-let processing = ref(false);
-
-let form = reactive({
+let form = useForm({
     name: '',
     email: '',
     password: '',
 })
 let submitFrom = () => {
-    processing.value = true;
-    router.post('/users', form);
+    form.post('/users');
 
 }
 </script>
@@ -43,8 +40,8 @@ let submitFrom = () => {
                     required
                 >
                 <div
-                    v-if="errors.name"
-                    v-text="errors.name"
+                    v-if="form.errors.name"
+                    v-text="form.errors.name"
                     class="text-red-500 text-xs mt-1"
                 ></div>
             </div>
@@ -64,8 +61,8 @@ let submitFrom = () => {
                     required
                 >
                 <div
-                    v-if="errors.email"
-                    v-text="errors.email"
+                    v-if="form.errors.email"
+                    v-text="form.errors.email"
                     class="text-red-500 text-xs mt-1"
                 ></div>
             </div>
@@ -85,15 +82,15 @@ let submitFrom = () => {
                     required
                 >
                 <div
-                    v-if="errors.password"
-                    v-text="errors.password"
+                    v-if="form.errors.password"
+                    v-text="form.errors.password"
                     class="text-red-500 text-xs mt-1"
                 ></div>
             </div>
             <div>
                 <button
                     type="submit"
-                    :disabled="processing"
+                    :disabled="form.processing"
                     class="bg-blue-400 disabled:bg-gray-600 cursor-pointer disabled:cursor-not-allowed text-white rounded py-2 px-4 hover:bg-blue-500"
                 >
                     Submit
