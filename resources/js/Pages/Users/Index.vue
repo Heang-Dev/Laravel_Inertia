@@ -9,6 +9,7 @@ import { debounce } from "lodash";
 const props = defineProps({
     users: Object,
     filters: Object,
+    can: Object,
 });
 
 let search = ref(props.filters.search);
@@ -27,6 +28,7 @@ watch(search, debounce(function (value) {
                     Users page
                 </h1>
                 <Link
+                    v-if="can.createUser"
                     href="/users/create"
                     class="text-blue-500"
                 >
@@ -53,6 +55,7 @@ watch(search, debounce(function (value) {
                     <td class="px-6 py-4 text-sm text-gray-700 w-full">{{ user.name }}</td>
                     <td class="px-6 py-4">
                         <Link
+                            v-if="user.can.edit"
                             :href="`/users/${user.id}/edit`"
                             class="px-4 py-2 bg-blue-500 cursor-pointer text-white text-sm rounded hover:bg-blue-600"
                         >Edit</Link>

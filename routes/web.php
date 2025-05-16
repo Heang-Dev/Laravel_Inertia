@@ -29,14 +29,20 @@ Route::middleware('auth')->group(function () {
                 ->through(fn($user) => [
                     'id' => $user->id,
                     'name' => $user->name,
+                    'can' => [
+                        'edit' => Auth::user()->can('edit', $user)
+                    ]
                 ]),
             'filters' => Request::only(['search']),
+            'can' => [
+                'createUser' => Auth::user()->can('create', User::class)
+            ]
         ]);
     });
 
     Route::get('/users/create', function () {
         return inertia('Users/Create');
-    });
+    })->middleware('can:create, App\Models\User');
 
     Route::post('/users', function () {
         sleep(3);
