@@ -12,6 +12,7 @@ let form = useForm({
     email: '',
     password: '',
 })
+
 let submitFrom = () => {
     form.post('/users');
 
